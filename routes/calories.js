@@ -10,6 +10,10 @@ const { ErrorHandler } = require('../error')
 //get config details
 dotenv.config();
 
+/**
+ * @description - add meals for specific date, if existing data is preset for a user on that date then push current obj
+ * 
+ */
 route.post('/addMeals',jwtVerify, async(req,res,next)=>{
     try{
         let dt = new Date(req.body.date.toString())
@@ -33,6 +37,9 @@ route.post('/addMeals',jwtVerify, async(req,res,next)=>{
     }
 })
 
+/**
+ * @description - updates calorie/food name for a specific date, using array Index of that item in dailyMeals array
+ */
 route.post('/editMeals',jwtVerify, async(req,res,next)=>{
     try{
         let body = {
@@ -48,10 +55,13 @@ route.post('/editMeals',jwtVerify, async(req,res,next)=>{
         let obj =  { ...res.locals}
         res.send(obj)
     }catch(e){
-        next(e)
+        throw new ErrorHandler(e)
     }
 })
 
+/**
+ * @description - delete meals of a specific date using unique id 
+ */
 route.post('/delMeals',jwtVerify, async(req,res,next)=>{
     try{
         let id = req.body.id
@@ -64,6 +74,9 @@ route.post('/delMeals',jwtVerify, async(req,res,next)=>{
     }
 })
 
+/**
+ * @description - on successfull jwt verification, get decoded user data & fetch his meals
+ */
 route.get('/fetchMeals', jwtVerify, async(req,res,next)=>{
     try{
         let userId = req.decoded.email
@@ -79,7 +92,7 @@ route.get('/fetchMeals', jwtVerify, async(req,res,next)=>{
         let obj =  { ...res.locals,data}
         res.send(obj)
     }catch(e){
-        next(e)
+        throw new ErrorHandler(e)
     }
 })
 

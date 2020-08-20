@@ -14,11 +14,12 @@ app.use(function(req,res,next) {
   return next();
 });
 
+//all routes
 app.use('/auth',users)
 app.use('/calories', calories)
 
 
-
+//error handling for unavailable routes
 app.use('*', (req, res) => {
     throw new ErrorHandler('Internal server error');
   })
