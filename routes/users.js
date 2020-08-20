@@ -44,7 +44,6 @@ route.post('/login', async(req,res,next)=>{
             passwordHash:req.body.hash
         }
         let collcn = await db.get('user')
-        console.log(body)
         let resp = await collcn.findOne({email:body.email, passwordHash:body.passwordHash})
         if(resp!=null){
             let token = jwt.sign(body, process.env.SECRET_TOKEN, {
