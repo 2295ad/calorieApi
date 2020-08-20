@@ -17,4 +17,6 @@
     
     4. A common api response structure is maintained
     
-    5. Mocha Chai is used for unit testing 
+    5. pine real time logging is added
+    
+    6. Mocha Chai is used for unit testing 
