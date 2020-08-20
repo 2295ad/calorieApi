@@ -12,7 +12,7 @@ describe("User Login", function() {
             .post('/auth/login')
             .send({
             email: 'adarsh', 
-            hash: '123'
+            hash: '12389'
             })
             .end(function (err, res) {
                 expect(res.body.signIn).to.equal(false);               
@@ -23,6 +23,7 @@ describe("User Login", function() {
     });
 });
 
+//'adarsh' not a registered user, hence it will return success true
 describe("User Register", function() {
     describe("Check Auth", function() {
         it("try register ", function(done) {
