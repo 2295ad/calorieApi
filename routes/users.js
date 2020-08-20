@@ -17,7 +17,15 @@ route.post('/register',async(req,res,next)=>{
             ts:new Date().getTime()
         }
         let collcn = await db.get('user')
-        await  collcn.insert(body)
+        let dupUser = await collcn.findOne({email:body.email})
+        if(dupUser !== null){
+            res.locals.msg = 'User already registered'
+            res.locals.reg = false
+        }else{
+            await  collcn.insert(body)
+            res.locals.msg = 'User registered'
+            res.locals.reg  = true
+        }
         let obj =  { ...res.locals}
         res.send(obj)
     }catch(e){
@@ -33,10 +41,11 @@ route.post('/login', async(req,res,next)=>{
     try{
         let body = {
             email : req.body.email,
-            hash:req.body.hash
+            passwordHash:req.body.hash
         }
         let collcn = await db.get('user')
-        let resp = await collcn.findOne({name:body.userId, passwordHash:body.hash})
+        console.log(body)
+        let resp = await collcn.findOne({email:body.email, passwordHash:body.passwordHash})
         if(resp!=null){
             let token = jwt.sign(body, process.env.SECRET_TOKEN, {
                 algorithm: process.env.ALGORITHM,
@@ -45,6 +54,7 @@ route.post('/login', async(req,res,next)=>{
             let obj ={ ...res.locals, signIn:true, token:token}
             res.send(obj)
         }else{
+            res.locals.msg =" Authentication failed"
             let obj = {...res.locals, signIn:false}
             res.send(obj)
         }

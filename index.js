@@ -5,6 +5,7 @@ const expressPino = require('express-pino-logger');
 const compression = require('compression')
 const { handleError } = require('./error')
 const timeout = require('connect-timeout')
+var cors = require('cors')
 
 
 //logging using pino
@@ -21,6 +22,7 @@ app.use(timeout('5s'))
 app.use(compression())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors())
 app.use(expressLogger)
 app.use('/', restService);
 

@@ -1,7 +1,5 @@
  
     {
         "url" :"localhost:27017/",
-        "db":"blog",
-        "user":"admin",
-        "passwd":"admin"
+        "db":"calorieDB"
     }

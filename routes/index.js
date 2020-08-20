@@ -9,6 +9,7 @@ const { ErrorHandler } = require('../error')
 app.use(function(req,res,next) {
   res.locals = {
     success:true,
+    msg:""
   };
   return next();
 });
