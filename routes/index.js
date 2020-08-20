@@ -9,10 +9,10 @@ const { ErrorHandler } = require('../error')
 app.use(function(req,res,next) {
   res.locals = {
     success:true,
-    status:200
   };
   return next();
 });
+
 app.use('/auth',users)
 app.use('/calories', calories)
 

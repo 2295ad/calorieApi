@@ -9,7 +9,6 @@ class ErrorHandler extends Error {
     const { message } = err;
     res.send({
       success:false,
-      status:500,
       message
     });
   };
