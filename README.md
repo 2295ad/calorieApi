@@ -1,4 +1,5 @@
 --FOLDER STRUCTURE--
+
     1. All routes are handled in routes folder through index.js
     
     2. Helper folder added, jwt token verification code added there.
@@ -7,6 +8,7 @@
 
 
 --DESIGN --
+
     1. Framework - expressJs, Database used is mongodb, monk module is used to perform all mongo operations
     
     2. JWT token is used for authentication
