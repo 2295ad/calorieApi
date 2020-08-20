@@ -2,9 +2,9 @@
 
     1. All routes are handled in routes folder through index.js
     
-    2. Helper folder added, jwt token verification code added there.
+    2. Helper folder added, additional required services is added there.
     
-    3. Database configurations specified in config.json & token secrets mentioned in .env file
+    3. Database configurations specified in config.json & token secret mentioned in .env file
 
 
 --DESIGN --
